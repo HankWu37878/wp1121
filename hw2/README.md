@@ -24,7 +24,7 @@ I've done the first and second requirements of perfect, which are the alert some
 - For the second requirement: check if the playlists or songs already existed before creating new ones
   You can try to add a song or playlist which already existed in the data, then there will be a pop up window(first requirement) remind you of that.
 
-
+If there's any question about my hw2, please contact hankwu1222@gmail.com, thanks.
 
   
 
