@@ -34,9 +34,14 @@ export default function AddActivtyDialog({open, onClose}: addActivtyDialogProps)
         let endDate = endDateRef.current?.value;
         const startHr = startHrRef.current?.value;
         const endHr = endHrRef.current?.value;
-        if (!content || !username) return;
+        if (!username) return;
+        if (!content) {
+            alert("Please fill in the activity name!");
+            return;
+        }
+
         if (!startDate || !endDate || !startHr || !endHr) {
-            alert("Please check that the start and end date are both valid!");
+            alert("Please check that the start and end date are both valid(1.The start time cannot be later than the end time. 2. The whole duration cannot exceed 7 days.)!");
             return;
         }
 
@@ -44,7 +49,7 @@ export default function AddActivtyDialog({open, onClose}: addActivtyDialogProps)
         const end = moment(endDate);
 
         if ( start > end || moment(end).diff(start, "days") > 7 || (moment(end).diff(start, "days") === 7 && endHr > startHr)) {
-            alert("Please check that the start and end date are both valid!");
+            alert("Please check that the start and end date are both valid(1.The start time cannot be later than the end time. 2. The whole duration cannot exceed 7 days.)!");
             return;
         }
 
