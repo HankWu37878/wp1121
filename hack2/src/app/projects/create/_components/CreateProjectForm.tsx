@@ -14,6 +14,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 import type { Project } from "@/lib/types";
+import { publicEnv } from "@/lib/env/public";
 
 export default function CreateProjectForm() {
   const [projectName, setProjectName] = useState<Project["name"]>("");
@@ -30,7 +31,7 @@ export default function CreateProjectForm() {
       const newProject = await createProject(projectName, projectDescription);
 
       // TODO: 5. After creating a project, redirect to the project page
-      router.push(`http://localhost:3000/projects/${newProject.id}`);
+      router.push(`${publicEnv.NEXT_PUBLIC_BASE_URL}/projects/${newProject.id}`);
       // hint: Why are some variables unused?
 
       // TODO: 5. end
