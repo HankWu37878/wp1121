@@ -11,9 +11,9 @@ import { useRouter } from "next/navigation";
 export default function SignOutButton() {
   const router = useRouter();
   const { data: session } = useSession();
-  const handleSignOut = () => {
+  const handleSignOut = async() => {
     if (session) {
-      signOut({ callbackUrl: publicEnv.NEXT_PUBLIC_BASE_URL });
+      await signOut({ callbackUrl: publicEnv.NEXT_PUBLIC_BASE_URL });
     }
     router.push("/");
   }
