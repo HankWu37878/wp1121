@@ -1,9 +1,10 @@
-//import { drizzle } from "drizzle-orm/node-postgres";
-//import { Client } from "pg";
-
+import { drizzle } from "drizzle-orm/node-postgres";
+import { Client } from "pg";
 import { env } from "@/lib/env";
 
-/*const client = new Client({
+
+
+const client = new Client({
   connectionString: env.POSTGRES_URL,
   connectionTimeoutMillis: 5000,
 });
@@ -11,13 +12,15 @@ import { env } from "@/lib/env";
 // to use top level await (await outside of an async function)
 // we need to enable it in the tsconfig.json file to make typescript happy.
 // Change the "target" field to "es2017" in the tsconfig.json file.
-await client.connect();*/
+await client.connect();
+export const db = drizzle(client);
 
-import { neon, neonConfig } from '@neondatabase/serverless';
+/*import { neon, neonConfig } from '@neondatabase/serverless';
 import { drizzle } from 'drizzle-orm/neon-http';
+import { env } from "@/lib/env";
 
 neonConfig.fetchConnectionCache = true;
 
 const sql = neon(env.POSTGRES_URL!);
-export const db = drizzle(sql);
+export const db = drizzle(sql);*/
 

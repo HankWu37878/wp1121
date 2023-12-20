@@ -4,10 +4,11 @@ import UserAvatar from "@/components/UserAvatar";
 import Activity from "@/components/Activity";
 import { db } from "@/db";
 import { activitiesTable, participantsTable, usersTable } from "@/db/schema";
-import { desc, eq, like, sql } from "drizzle-orm";
+import { desc, eq, /*like,*/ sql } from "drizzle-orm";
 import ChangeUserButton from "@/components/ChangeUserButton";
 import AddActivityButton from "@/components/AddActivityButton";
 import SearchArea from "@/components/SearchArea";
+
 
 type HomePageProps = {
     searchParams: {
@@ -17,7 +18,7 @@ type HomePageProps = {
   };
 
 export default async function Home({
-    searchParams: { username, searchString },
+    searchParams: { username, /*searchString*/ },
   }: HomePageProps) {
     if (username) {
         await db
@@ -90,12 +91,15 @@ export default async function Home({
         participated: participatedSubquery.participated,
     })
     .from(activitiesTable)
-    .where(like(activitiesTable.content, `${searchString ?? ""}%`))
+    //.where(like(activitiesTable.content, `${searchString ?? ""}%`))
     .orderBy(desc(activitiesTable.createdAt))
     .innerJoin(usersTable, eq(activitiesTable.username, usersTable.displayName))
     .leftJoin(participantsSubquery, eq(activitiesTable.id, participantsSubquery.activityId))
     .leftJoin(participatedSubquery, eq(activitiesTable.id, participatedSubquery.activityId))
     .execute();
+
+    console.log(activities);
+
 
 
     return (
