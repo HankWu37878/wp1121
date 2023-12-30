@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 
 import StarRateIcon from "@mui/icons-material/StarRate";
 
-import AddToCartButton from "./AddToCartButton";
 import { deleteStyle } from "./actions";
 
 type Props = {
@@ -88,11 +87,6 @@ function ProductDetail({ detail_1, detail_2, rate, images, commentQuantity }: Pr
         <div className="flex h-14 w-full items-center justify-start gap-10 text-xl">
           <span>庫存尚有：{detail_2[currentIndex].productQuantity}</span>
           <span>已售出：{detail_2[currentIndex].productSold}</span>
-          <AddToCartButton
-            productId={detail_1.displayId}
-            productDetailId={detail_2[currentIndex].displayId}
-            quantityLeft={detail_2[currentIndex].productQuantity}
-          />
         </div>
         <div className="flex h-24 w-full items-center justify-start gap-4">
           {detail_2.map((detail, index) => (
