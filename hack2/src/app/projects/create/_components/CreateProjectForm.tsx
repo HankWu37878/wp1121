@@ -54,7 +54,7 @@ export default function CreateProjectForm() {
     setProjectName("");
     setProjectDescription("");
   };
-
+  
   return (
     <div className="flex h-screen w-full flex-col gap-4 p-10">
       <h1 className="text-3xl">Create a new project</h1>
